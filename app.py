@@ -59,7 +59,7 @@ def create_account(data):
         if user_name_as_id in users_table:
             feedback = 'The username is unavailable.'
             print('fbk: ' + feedback + '  ' +  user_name_as_id)
-            return
+            return emit('reg feedback', {'feedback': feedback}, room=user_sid)
         if user_name_as_id not in users_table:
             users_table[user_name_as_id] = {}
             users_table[user_name_as_id]['user_name'] = user_name_as_id
@@ -89,20 +89,23 @@ def user_login(data):
         user_name_as_id = unpacked_payload['username']
         password = unpacked_payload['password']
         if user_name_as_id not in users_table:
-            feedback = 'invalid username'
+            feedback = 'invalid username or password'
             print('Username Fbk: ' + feedback )
-            return
+            return emit('login feedback', {'feedback':feedback}, room=user_sid)
         if password not in users_table[user_name_as_id]['password']:
-            feedback = 'invalid password'
+            feedback = 'invalid username or password'
             print('Password Fbk: ' + feedback)
-            return
+            return emit('login feedback', {'feedback':feedback}, room=user_sid)
         if user_name_as_id in users_table and password in users_table[user_name_as_id]['password']:
             if user_name_as_id not in users_name_storage:
                 users_name_storage[user_name_as_id] = user_name_as_id
                 user_session[user_name_as_id] = request.sid
                 print('Username: ' + user_name_as_id)
-            else: print('You are still logged in')
-            print('Password: ' + password)
+            else:
+                feedback = 'You are still logged in'
+                print('You are still logged in')
+                return emit('login feedback', {'feedback':feedback}, room=user_sid)
+            # print('Password: ' + password)
     except (TypeError, NameError, KeyError):
         print("A TypeError OR NameError occured")
     except:
@@ -123,8 +126,8 @@ def user_logout(data):
         user_name_as_id = unpacked_payload['user_name']
         if user_name_as_id in users_name_storage:
             popped_user_data = users_name_storage.pop(user_name_as_id)
-            print (popped_user_data)
-            emit('logout feedback', {'feedback': popped_user_data}, room=user_sid)
+            # print (popped_user_data)
+            emit('logout feedback', {'feedback': 'Do Nothing'}, room=user_sid)
     except (TypeError, NameError, KeyError):
         print("A TypeError OR NameError occured")
     except:
@@ -148,11 +151,11 @@ def chat_messages(msg):
         user_name_as_id = unpacked_payload['user_name']
         password = unpacked_payload['password']
         if user_name_as_id not in users_table:
-            print('Username Authentication: An unauthorised user.\nWe have no record of you')
+            # print('Username Authentication: An unauthorised user.\nWe have no record of you')
             return
     
         if password not in users_table[user_name_as_id]['password']:
-            print('Password Authentication: An unauthorised user.\nWe have no record of you')
+            # print('Password Authentication: An unauthorised user.\nWe have no record of you')
             return
     except (TypeError, NameError, KeyError):
         print("A TypeError OR NameError occured")

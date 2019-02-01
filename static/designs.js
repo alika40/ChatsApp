@@ -74,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           //If Reg form validates send data to the server
           auth_socket.emit('Create Account', {'user_data': user});
-          document.querySelector('#reg-status').innerHTML = 'This username is taken.'; 
   });
    
 //Server emitted event handler from Registration         
@@ -82,20 +81,24 @@ document.addEventListener('DOMContentLoaded', () => {
         if(data.feedback === 'successful'){
             regClose();
             loginOpen();
-            document.querySelector('#reg-status').innerHTML = '';
+            document.querySelector('#reg-status').innerHTML = "";
             document.querySelectorAll('.invalid').forEach(function(span){
                 span.style.display = 'none';
             });
+        } else{
+            document.querySelector('#reg-status').innerHTML = data.feedback;          
         }
     });
     
     
 
 
-    
-// Get User data and send them to the server for authentication
-  document.getElementById('login-form')
-      .addEventListener('submit', function(e){
+ //Clear pswd input field to prevent queaky behavior.
+document.querySelector('#login-password').value = '';
+
+// Get User data and send them to the server for authentication 
+const loginButton = document.getElementById('login-form');
+loginButton.addEventListener('submit', function(e){
           e.preventDefault();
           //Store a user data in an Object and send it to the server for validation
           var user = {
@@ -113,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
           }
           //If Login form validates send data to the server
           auth_socket.emit('User Login', {'user_data': user});
-          document.querySelector('#login-feedback').innerHTML = 'Invalid username or password.';
+          openLoaderPage();
     });
       
 
@@ -126,38 +129,41 @@ let stringifiedObj, full_name_container, full_name, nickname, full_name_anchor, 
 //Server emitted response that logs user in to chat page
     auth_socket.on('login feedback', (data) => {
         if(data.feedback === 'valid user'){
+            closeLoaderPage();
             loginClose();
-            openLoaderPage();
             stringifiedObj = JSON.stringify(data.username_property);
             localStorage.setItem('userLogin', stringifiedObj);
             //Invoke setTimeout() to simulate a loading page
-            if(parsedVal !== null){openChat();}
-            else{
-              loaderTimerFunc();
-              }
-            //loaderTimerFunc();
-            document.querySelector('#verify-username').innerHTML = '';
-            document.querySelector('#verify-password').innerHTML = '';
-            document.querySelector('#login-feedback').innerHTML = '';
-            //Append username to chat page navbar
-            document.querySelector('.userNameDropdown').innerHTML = data.username_property.user_name + '&#9660;';
-            full_name = document.createElement('h4');
-            full_name_anchor = document.createElement('a');
-            nickname = document.createElement('p');
-            nicknameText = document.createTextNode('Username: ');
-            nickname_span = document.createElement('span');
-            full_name_anchor.setAttribute('class', 'full-name');
-            full_name_anchor.setAttribute('href', '#');
-            nickname_span.setAttribute('class', 'nickname');
-            full_name.appendChild(full_name_anchor);
-            nickname.appendChild(nicknameText);
-            nickname.appendChild(nickname_span);
-            full_name_anchor.textContent = data.username_property.first_name + ' ' + data.username_property.last_name;
-            nickname_span.textContent = data.username_property.user_name;
-            full_name_container.insertBefore(full_name, full_name_container.firstChild);
-            linkDiv.insertBefore(nickname, linkDiv.firstChild);
-            if(parsedVal === null){location.reload();}
+            if(parsedVal !== null){
+                closeLoaderPage();
+                openChat();
+                //loaderTimerFunc();
+                document.querySelector('#verify-username').innerHTML = '';
+                document.querySelector('#verify-password').innerHTML = '';
+                document.querySelector('#login-feedback').innerHTML = '';
+                //Append username to chat page navbar
+                document.querySelector('.userNameDropdown').innerHTML = data.username_property.user_name + '&#9660;';
+                full_name = document.createElement('h4');
+                full_name_anchor = document.createElement('a');
+                nickname = document.createElement('p');
+                nicknameText = document.createTextNode('Username: ');
+                nickname_span = document.createElement('span');
+                full_name_anchor.setAttribute('class', 'full-name');
+                full_name_anchor.setAttribute('href', '#');
+                nickname_span.setAttribute('class', 'nickname');
+                full_name.appendChild(full_name_anchor);
+                nickname.appendChild(nicknameText);
+                nickname.appendChild(nickname_span);
+                full_name_anchor.textContent = data.username_property.first_name + ' ' + data.username_property.last_name;
+                nickname_span.textContent = data.username_property.user_name;
+                full_name_container.insertBefore(full_name, full_name_container.firstChild);
+                linkDiv.insertBefore(nickname, linkDiv.firstChild);
+            }else{location.reload();}
         }
+        else{
+            document.querySelector('#login-password').value = '';//Clear pswd input field to prevent queaky behavior.
+            document.querySelector('#login-feedback').innerHTML = data.feedback;
+            }
     });
 
 
@@ -276,16 +282,24 @@ let closeLoader = document.getElementById('closeLoader');
 });
 
     //Page loading simulation timer functions
+/*
 let loaderTimer, openChatTimer;
-function loaderTimerFunc() {
+const loaderTimerFunc = ()=>{
     loaderTimer = setTimeout(closeLoaderPage, 2500);
     openChatTimer = setTimeout(openChat, 2500);
-}
+};
+
+//const loaderTimerFunc = ()=>{
+//  loaderTimer = setTimeout(closeLoaderPage, 2500);
+//};
+
 
 function stopLoaderTimerFunc() {
     clearTimeout(loaderTimer);
     clearTimeout(openChatTimer);
 }
+*/
+
 
 
 
@@ -408,7 +422,6 @@ button.addEventListener('click', function(e){
      if(input.value !== ''){
           button.disabled = false;
           input.removeAttribute('placeholder');
-          stopLoaderTimerFunc();/* stop setTimeout() from running the moment the user sent a message */
           let val = input.value;
               input.value = '';
               chat_socket.emit('Chat Message', {'data': val, 'user_data': parsedVal});

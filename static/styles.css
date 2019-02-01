@@ -68,8 +68,6 @@ h6{
 #navbar {
       height: 60px;
       color: #000;
-      /*width: 100%;*/
-      /*font-size: 16px;*/
       padding-top: 14px;
       font-family: cursive;
       border: 2px solid #ddd;
@@ -90,18 +88,20 @@ h6{
 #msg-main-div{transition: margin-right .2s; background: white url(image/dust_scratches.png) repeat fixed;}
 #siteName{font-size: 20px;}
  /* SIDENAV HEADER */
-    .sidenav {
-      height: 100%;
-      width: 0%;
-      position: fixed;
-      z-index: 1;
-      top: 40px;
-      left: 0;
-      padding-top: 15px;
-      background-color: #394959;
-      transition: 0.2s;
-      overflow: auto;
-    }
+.sidenav {
+  /*height: 100%;*/
+  min-height: calc(100vh - 40px);
+  /*min-height: 70vh;*/
+  width: 0%;
+  position: fixed;
+  z-index: 1;
+  top: 40px;
+  margin-left: 0;
+  padding-top: 15px;
+  background-color: #394959;
+  transition: 0.2s;
+  overflow: auto;
+}
       
 .sidenav p{
   padding-left: 20px;
@@ -198,34 +198,21 @@ h6{
   border-radius: 8px 8px 8px 8px;
 }
 .container-fixed{
-  min-height: calc(100vh - 203px);
+   /*min-height: calc(100vh - 214px);  */
   /*background: teal;*/
 }
 .inner-fix{
-  height: 68vh;
+  min-height: calc(100vh - 190px);
   overflow: auto;
-  width: 99%;
-  /*background: teal;*/
-}
-.container-fixed1{
-  min-height: calc(100vh - 40px);
 }
 .container-pm-fixed{
-  /*min-height: calc(100vh - 240px);
-  background:  green;
-  margin-left: 10px;
-  height: 100vh;*/
-  background: #fff;
-  height: 74vh;
-  padding-top: 10px;
   border-top: 1px solid #ddd;
   background: white url(image/dust_scratches.png) repeat fixed;
 }
 .inner-fix2{
   height: 70vh;
+  padding-top: 10px;
   overflow: auto;
-  /*width: 99%;*/
-  /*background: teal;*/
 }
 .msg-form-wrapper{
     padding: 10px 0;
@@ -236,7 +223,6 @@ h6{
     padding: 12.5px 0;
     border-top: 1px solid #ddd;
     background: #eee;
-    /*margin-bottom: 100px;*/
 }
 #private-sidenav{
     height: 100%;
@@ -292,13 +278,13 @@ h6{
 .messages li, .server-messages li, .pr-messages li, .server-pr-messages li{border-radius:5px; padding: 0 0 4px 5px;}
 /*.messages li::after, .server-messages li::after{content: ""; clear: both; display: table;}*/
 .pr-messages li:nth-child(odd), .server-pr-messages li:nth-child(odd){ background: #fff;}
-.username_span{color: #000; margin-left: 10px; font-weight: bold; font-size: 1em;}
-.text_span{color: #000; display: block; margin-left: 40px; margin-top: -5px; font-size: 1em;}
-.time_span{color: grey; margin-left: 10px; font-size: .75em; display: inline; top: 15px;}
+.username_span{color: #000; margin-left: 10px; font-weight: bold; font-size: 1.05em;}
+.text_span{color: #000; display: block; margin-left: 40px; margin-top: -5px; font-size: 1.05em;}
+.time_span{color: grey; margin-left: 10px; font-size: .85em; display: inline; top: 15px;}
 .user_img{border-radius: 8px; float: left;  height: 32px; width: 28px; margin-top: 5px;}
-.username_span .userATag {color:#000; cursor:pointer; font-size:1em; display:inline; top:18px; font-weight: bold;}
+.username_span .userATag {color:#000; cursor:pointer; font-size:1.05em; display:inline; top:18px; font-weight: bold;}
 .username_span .userATag:visited{color: #000;}
-.username_span .userATag:hover{color:#000; text-decoration:underline;}
+.username_span .userATag:hover{color:#C00; text-decoration:underline;}
 
 /* home.html*/
 .modal-header, .unique{
@@ -542,14 +528,17 @@ form input[type=text], form input[type=password]{height: 24px; font-size: .90rem
 }
 
 .card {
+  min-height: calc(100vh - 130px);
   border: 1px solid #ddd;
-  margin: auto;
-  background: #fff;
+  /*margin: auto;*/
+  /*background: #fff;*/
   text-align: center;
   font-family: arial;
   padding: 15px;
-  height: auto;
   background: white url(image/gaming-pattern.png) repeat fixed;
+  /*height: 70vh;*/
+  /*padding-top: 10px;*/
+  overflow: auto;
 }
 .card .full-name-container, .card img{
   margin-top: 20px;
@@ -589,15 +578,16 @@ form input[type=text], form input[type=password]{height: 24px; font-size: .90rem
 
 /*Profile page and details*/
 .profilesidenav {
-    height: 100%;
+    height: 100vh;
     width: 0%;
     position: fixed;
-    /*z-index: 3;*/
+    z-index: 4;
     top: 100px;
     right: 0;
     background-color: #f1f1f1;
     transition: 0.2s;
     padding-top: 50px;
+    overflow: auto;
     border-bottom: 2px solid #ddd;
     border-left: 2px solid #ddd;
     border-right: 2px solid #ddd;
@@ -622,17 +612,14 @@ form input[type=text], form input[type=password]{height: 24px; font-size: .90rem
 
 }
 
-/*
-@media only screen and (min-width: 600px) {
 
-} */
+
 
 @media only screen and (min-width: 768px) {
 
 /* SIDENAV HEADER */
 .sidenav {
-    min-height: calc(100vh - 40px); /*Added*/
-    /*min-height: 100vh; */
+    min-height: calc(100vh - 40px);
     float: left;
     width: 15%;
     top: 40px;
@@ -682,15 +669,6 @@ form input[type=text], form input[type=password]{height: 24px; font-size: .90rem
 #msg-main-div{transition: margin-right .2s; background: white url(image/dust_scratches.png) repeat fixed;}
 
 
-/*#info{
-  text-align: center;
-  width: 100%;
-  z-index: 4;
-  height: 24px;
-  background: #9f9;
-  color: #0c0;
-  opacity: 0.5;
-}*/
 #navbar {
     height: 60px;
     color: #000;
@@ -746,7 +724,6 @@ form input[type=text], form input[type=password]{height: 24px; font-size: .90rem
   height: 60.9vh;
   padding-top: 10px;
   border-top: 1px solid #ddd;
-  /*background: white url(image/concrete_seamless.png) repeat;*/
   background: white url(image/dust_scratches.png) repeat fixed;
 }
 .inner-fix2{
@@ -823,201 +800,6 @@ form input[type=text], form input[type=password]{height: 24px; font-size: .90rem
 .username_span .userATag:visited{color: #000;}
 .username_span .userATag:hover{color:#000; text-decoration:underline;}
 
-
-
-
-/* SIDENAV HEADER */
-/*.sidenav {
-    min-height: 100vh; 
-    float: left;
-    width: 15%;
-    top: 40px;
-    color: #fff;   
-    background-color: #4c3d56;
-    border-right: 2px solid #ddd;
-    overflow-x: hidden;
-    overflow-y: auto;
-    padding: 0;
-}
-
-.sidenav p{
-  padding-left: 20px;
-  margin-top: 15px;
-}
-
-.sidenav div, .sidenav ul li div{
-  padding-left: 20px;
-}
-
-.sidenav #append-username{list-style-type: none;}
-.sidenav #append-username li{margin-left: -40px; margin-top: -5px;}
-.sidenav ul{margin-top: -25px;}
-
-.sidenav p a, .sidenav span a, .sidenav div a, .sidenav ul li div a{
-    font-weight: bold;
-    font-size: 1.0em;
-    color: #fff;
-    margin-bottom: -5px;
-  }
-.sidenav p a:hover, .sidenav div a:hover, .sidenav ul li div a:hover{
-    background: #261d2a;
-    color: #fff;
-}
-.sidenav p:target, .sidenav div:target, .sidenav ul li div:target{
-    background:  #21e1b6;
-    color: #fff;
-}*/
-
-/*
-#message-wrapper{
-    top: 40px;
-    padding-left: 0;
-    width: 85%;
-    float: left;
-    }
-#msg-main-div{transition: margin-right .2s;}
-
-
-#info{
-  text-align: center;
-  width: 100%;
-  z-index: 4;
-  height: 24px;
-  background: #9f9;
-  color: #0c0;
-  opacity: 0.5;
-}
-#navbar {
-    height: 60px;
-    color: #000;
-    width: 100%;
-    font-size: 16px;
-    padding-top: 14px;
-    font-family: cursive;
-    border: 2px solid #ddd;
-    border-left: none;
-    background: #fff;
-}*/
-/*
-#home-container .form-group .myBtn{
-    margin-top: 15px;
-    font-size:15px;
-    cursor:pointer;
-    background:  #6a7dd5 ;
-    color: #fff;
-    }
-.overlay-content.content.form-group.myBtn{background:#6a7dd5; color:#fff;}
-#chatform {
-  background: #394959;
-  padding: 5px;
-  bottom: 0;
-  height: 60px;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
-  border-radius: 8px 8px 8px 8px;
-}
-#chatform1 {
-  background: #394959;
-  padding: 5px;
-  bottom: 0;
-  height: 60px;
-  width: 95%;
-  margin-left: 2.5%;
-  margin-right: 2.5%;
-  border-radius: 8px 8px 8px 8px;
-}
-.container-fixed{
-  min-height: calc(100vh - 203px);
-}
-.inner-fix{
-  height: 68vh;
-  overflow: auto;
-  width: 99%;
-}
-.container-fixed1{
-  min-height: calc(100vh - 40px);
-}
-.container-pm-fixed{
-  background: #fff;
-  height: 60.9vh;
-  padding-top: 10px;
-  border-top: 1px solid #ddd;
-}
-.inner-fix2{
-  height: 60vh;
-  overflow: auto;
-}
-.msg-form-wrapper{
-    padding: 10px 0;
-    border-top: 1px solid #ddd;
-    background: #fff;
-}
-.msg-form-wrapper1{
-    padding: 12.5px 0;
-    border-top: 1px solid #ddd;
-    background: #fff;
-}
-#private-sidenav{
-    height: 100%;
-    width: 0%;
-    position: fixed;
-    right: 0;
-    background-color: #f1f1f1;
-    transition: 0.2s;
-    border-bottom: 2px solid #ddd;
-    border-left: 2px solid #ddd;
-    border-right: 2px solid #ddd;
-    overflow: auto;
-    top: 100px;
-    padding-top: 60px;
-}
-#chatform #m {
-  border: 0;
-  padding: 20px;
-  width: 90%;
-  height: 50px;
-  margin-right: .5%;
-  border-radius: 8px 0 0 8px;
-}
-#chatform1 #pm {
-  border: 0;
-  padding: 5px;
-  width: 85%;
-  height: 50px;
-  margin-right: .5%;
-  margin-left: .5%;
-  border-radius: 8px 0 0 8px;
-}
-#chatform button {
-  width: 9%;
-  background: #aaa;
-  border: none;
-  padding: 14px;
-  font-weight: bold;
-}
-#chatform1 button {
-  width: 12%;
-  background: #aaa;
-  font-size: .70em;
-  border: none;
-  padding: 10px;
-  font-weight: bold;
-}
-#chatform button:hover{background: rgb(100, 250, 250); color: #333;}
-#chatform1 button:hover{background: rgb(100, 250, 250); color: #333;}
-.messages, .server-messages, .pr-messages, .server-pr-messages{list-style-type: none; margin: 0 25px; padding: 0;}
-.messages li, .server-messages li, .pr-messages li, .server-pr-messages li{ padding: 0 0 8px 0;}
-*//*.messages li::after, .server-messages li::after{content: ""; clear: both; display: table;}*/
-/*.messages li:nth-child(odd), .server-messages li:nth-child(odd){ background: #eee;}*//*
-.username_span{color: #000; margin-left: 10px; font-weight: bold;}
-.text_span{color: #000; display: block; margin-left: 45px; margin-top: -5px; font-size: 1.05em;}
-.time_span{color: grey; margin-left: 10px; font-size: .85em; display: inline; top: 18px;}
-.user_img{border-radius: 8px; float: left;  height: 35px; width: 30px; margin-top: 6px;}
-.username_span .userATag {color:#000; cursor:pointer; font-size:1.10em; display:inline; top:18px; font-weight: bold;}
-.username_span .userATag:visited{color: #000;}
-.username_span .userATag:hover{color:#000; text-decoration:underline;}
-*/
 
 /* home.html*/
 .modal-header, .unique{
