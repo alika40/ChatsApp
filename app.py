@@ -101,11 +101,7 @@ def user_login(data):
                 users_name_storage[user_name_as_id] = user_name_as_id
                 user_session[user_name_as_id] = request.sid
                 print('Username: ' + user_name_as_id)
-            else:
-                feedback = 'You are still logged in'
-                print('You are still logged in')
-                return emit('login feedback', {'feedback':feedback}, room=user_sid)
-            # print('Password: ' + password)
+                
     except (TypeError, NameError, KeyError):
         print("A TypeError OR NameError occured")
     except:
@@ -167,7 +163,7 @@ def chat_messages(msg):
     users_msgs[user_name_as_id] = {}
     users_msgs[user_name_as_id]['user_name'] = user_name_as_id
     users_msgs[user_name_as_id]['chatMsg'] = msg['data']
-    users_msgs[user_name_as_id]['timeStamp'] = timeStamp.strftime("%b %d, %Y. %I:%M%p")
+    users_msgs[user_name_as_id]['timeStamp'] = timeStamp.strftime("%d/%b/%Y. %I:%M%p")
     saved_chat_to_list = users_msgs[user_name_as_id]
     message_storage.append(saved_chat_to_list)
     user_details = users_table[user_name_as_id]
@@ -245,7 +241,7 @@ def private_chat(msg):
     private_msgs[concatBothUsernames] = {}
     private_msgs[concatBothUsernames]['user_name'] = msg_sender
     private_msgs[concatBothUsernames]['chatMsg'] = msg['data']
-    private_msgs[concatBothUsernames]['timeStamp'] = timeStamp.strftime("%b %d, %Y. %I:%M%p")
+    private_msgs[concatBothUsernames]['timeStamp'] = timeStamp.strftime("%d/%b/%Y. %I:%M%p")
     private_msg_storage.append(private_msgs)
     
     #If chat messages in the List is more than 30 remove the oldest chat

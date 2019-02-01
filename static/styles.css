@@ -68,6 +68,8 @@ h6{
 #navbar {
       height: 60px;
       color: #000;
+      /*width: 100%;*/
+      /*font-size: 16px;*/
       padding-top: 14px;
       font-family: cursive;
       border: 2px solid #ddd;
@@ -88,20 +90,18 @@ h6{
 #msg-main-div{transition: margin-right .2s; background: white url(image/dust_scratches.png) repeat fixed;}
 #siteName{font-size: 20px;}
  /* SIDENAV HEADER */
-.sidenav {
-  /*height: 100%;*/
-  min-height: calc(100vh - 40px);
-  /*min-height: 70vh;*/
-  width: 0%;
-  position: fixed;
-  z-index: 1;
-  top: 40px;
-  margin-left: 0;
-  padding-top: 15px;
-  background-color: #394959;
-  transition: 0.2s;
-  overflow: auto;
-}
+    .sidenav {
+      height: 100%;
+      width: 0%;
+      position: fixed;
+      z-index: 1;
+      top: 40px;
+      left: 0;
+      padding-top: 15px;
+      background-color: #394959;
+      transition: 0.2s;
+      overflow: auto;
+    }
       
 .sidenav p{
   padding-left: 20px;
@@ -198,21 +198,34 @@ h6{
   border-radius: 8px 8px 8px 8px;
 }
 .container-fixed{
-   /*min-height: calc(100vh - 214px);  */
+  min-height: calc(100vh - 203px);
   /*background: teal;*/
 }
 .inner-fix{
-  min-height: calc(100vh - 190px);
+  height: 68vh;
   overflow: auto;
+  width: 99%;
+  /*background: teal;*/
+}
+.container-fixed1{
+  min-height: calc(100vh - 40px);
 }
 .container-pm-fixed{
+  /*min-height: calc(100vh - 240px);
+  background:  green;
+  margin-left: 10px;
+  height: 100vh;*/
+  background: #fff;
+  height: 74vh;
+  padding-top: 10px;
   border-top: 1px solid #ddd;
   background: white url(image/dust_scratches.png) repeat fixed;
 }
 .inner-fix2{
   height: 70vh;
-  padding-top: 10px;
   overflow: auto;
+  /*width: 99%;*/
+  /*background: teal;*/
 }
 .msg-form-wrapper{
     padding: 10px 0;
@@ -223,6 +236,7 @@ h6{
     padding: 12.5px 0;
     border-top: 1px solid #ddd;
     background: #eee;
+    /*margin-bottom: 100px;*/
 }
 #private-sidenav{
     height: 100%;
@@ -278,13 +292,13 @@ h6{
 .messages li, .server-messages li, .pr-messages li, .server-pr-messages li{border-radius:5px; padding: 0 0 4px 5px;}
 /*.messages li::after, .server-messages li::after{content: ""; clear: both; display: table;}*/
 .pr-messages li:nth-child(odd), .server-pr-messages li:nth-child(odd){ background: #fff;}
-.username_span{color: #000; margin-left: 10px; font-weight: bold; font-size: 1.05em;}
-.text_span{color: #000; display: block; margin-left: 40px; margin-top: -5px; font-size: 1.05em;}
-.time_span{color: grey; margin-left: 10px; font-size: .85em; display: inline; top: 15px;}
+.username_span{color: #000; margin-left: 10px; font-weight: bold; font-size: 1em;}
+.text_span{color: #000; display: block; margin-left: 40px; margin-top: -5px; font-size: 1em;}
+.time_span{color: grey; margin-left: 5px; font-size: .80em; display: inline; top: 15px;}
 .user_img{border-radius: 8px; float: left;  height: 32px; width: 28px; margin-top: 5px;}
-.username_span .userATag {color:#000; cursor:pointer; font-size:1.05em; display:inline; top:18px; font-weight: bold;}
+.username_span .userATag {color:#000; cursor:pointer; font-size:1em; display:inline; top:18px; font-weight: bold;}
 .username_span .userATag:visited{color: #000;}
-.username_span .userATag:hover{color:#C00; text-decoration:underline;}
+.username_span .userATag:hover{color:#000; text-decoration:underline;}
 
 /* home.html*/
 .modal-header, .unique{
@@ -528,17 +542,14 @@ form input[type=text], form input[type=password]{height: 24px; font-size: .90rem
 }
 
 .card {
-  min-height: calc(100vh - 130px);
   border: 1px solid #ddd;
-  /*margin: auto;*/
-  /*background: #fff;*/
+  margin: auto;
+  background: #fff;
   text-align: center;
   font-family: arial;
   padding: 15px;
+  height: auto;
   background: white url(image/gaming-pattern.png) repeat fixed;
-  /*height: 70vh;*/
-  /*padding-top: 10px;*/
-  overflow: auto;
 }
 .card .full-name-container, .card img{
   margin-top: 20px;
@@ -578,16 +589,15 @@ form input[type=text], form input[type=password]{height: 24px; font-size: .90rem
 
 /*Profile page and details*/
 .profilesidenav {
-    height: 100vh;
+    height: 100%;
     width: 0%;
     position: fixed;
-    z-index: 4;
+    /*z-index: 3;*/
     top: 100px;
     right: 0;
     background-color: #f1f1f1;
     transition: 0.2s;
     padding-top: 50px;
-    overflow: auto;
     border-bottom: 2px solid #ddd;
     border-left: 2px solid #ddd;
     border-right: 2px solid #ddd;
@@ -612,14 +622,17 @@ form input[type=text], form input[type=password]{height: 24px; font-size: .90rem
 
 }
 
+/*
+@media only screen and (min-width: 600px) {
 
-
+} */
 
 @media only screen and (min-width: 768px) {
 
 /* SIDENAV HEADER */
 .sidenav {
-    min-height: calc(100vh - 40px);
+    min-height: calc(100vh - 40px); /*Added*/
+    /*min-height: 100vh; */
     float: left;
     width: 15%;
     top: 40px;
@@ -669,6 +682,15 @@ form input[type=text], form input[type=password]{height: 24px; font-size: .90rem
 #msg-main-div{transition: margin-right .2s; background: white url(image/dust_scratches.png) repeat fixed;}
 
 
+/*#info{
+  text-align: center;
+  width: 100%;
+  z-index: 4;
+  height: 24px;
+  background: #9f9;
+  color: #0c0;
+  opacity: 0.5;
+}*/
 #navbar {
     height: 60px;
     color: #000;
@@ -724,6 +746,7 @@ form input[type=text], form input[type=password]{height: 24px; font-size: .90rem
   height: 60.9vh;
   padding-top: 10px;
   border-top: 1px solid #ddd;
+  /*background: white url(image/concrete_seamless.png) repeat;*/
   background: white url(image/dust_scratches.png) repeat fixed;
 }
 .inner-fix2{

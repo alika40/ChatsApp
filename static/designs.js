@@ -116,7 +116,7 @@ loginButton.addEventListener('submit', function(e){
           }
           //If Login form validates send data to the server
           auth_socket.emit('User Login', {'user_data': user});
-          openLoaderPage();
+          //openLoaderPage();
     });
       
 
@@ -135,6 +135,7 @@ let stringifiedObj, full_name_container, full_name, nickname, full_name_anchor, 
             localStorage.setItem('userLogin', stringifiedObj);
             //Invoke setTimeout() to simulate a loading page
             if(parsedVal !== null){
+                loaderTimerFunc();
                 closeLoaderPage();
                 openChat();
                 //loaderTimerFunc();
@@ -158,6 +159,7 @@ let stringifiedObj, full_name_container, full_name, nickname, full_name_anchor, 
                 nickname_span.textContent = data.username_property.user_name;
                 full_name_container.insertBefore(full_name, full_name_container.firstChild);
                 linkDiv.insertBefore(nickname, linkDiv.firstChild);
+                stopLoaderTimerFunc();//clear timeout method
             }else{location.reload();}
         }
         else{
@@ -282,11 +284,10 @@ let closeLoader = document.getElementById('closeLoader');
 });
 
     //Page loading simulation timer functions
-/*
-let loaderTimer, openChatTimer;
+
+let loaderTimer;
 const loaderTimerFunc = ()=>{
-    loaderTimer = setTimeout(closeLoaderPage, 2500);
-    openChatTimer = setTimeout(openChat, 2500);
+    loaderTimer = setTimeout(openLoaderPage, 2500);
 };
 
 //const loaderTimerFunc = ()=>{
@@ -294,11 +295,10 @@ const loaderTimerFunc = ()=>{
 //};
 
 
-function stopLoaderTimerFunc() {
+const stopLoaderTimerFunc = ()=> {
     clearTimeout(loaderTimer);
-    clearTimeout(openChatTimer);
-}
-*/
+};
+
 
 
 
