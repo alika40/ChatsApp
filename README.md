@@ -14,7 +14,7 @@ The project has the following files:
 
 ## ABOUT APPLICATION
 The application is a chat application where a user can register/login to chat with other registered users. A user can also send a direct message to
-other registered users.
+other registered users. Visit https://chatzapp.herokuapp.com to try it out. 
 
 ## FEATURES:
 1.) Users can register, login, and logout.
